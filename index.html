@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
     <title>p5.js example</title>
     <style>
         body {
@@ -21,6 +21,23 @@
 </main>
 </body>
 
+<script>
+    document.documentElement.addEventListener('touchstart', function (event) {
+        if (event.touches.length > 1) {
+            event.preventDefault();
+        }
+    }, false);
+
+    let lastTouchEnd = 0;
+    document.documentElement.addEventListener('touchend', function (event) {
+        const now = Date.now();
+        if (now - lastTouchEnd <= 300) {
+            event.preventDefault();
+        }
+        lastTouchEnd = now;
+    }, false);
+
+</script>
 <script src="/__/firebase/8.8.1/firebase-app.js"></script>
 <script src="/__/firebase/8.8.1/firebase-analytics.js"></script>
 <script src="/__/firebase/init.js"></script>
