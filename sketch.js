@@ -698,7 +698,10 @@ Node.prototype.update = function () {
 //设置画布，绘出按钮
 function setup() {
     frameRate(FPS);
-    createCanvas(600, 700);
+    console.log(window.document.documentElement.clientWidth);
+    let clientWidth = window.document.documentElement.clientWidth;
+    let clientHeight = window.document.documentElement.clientHeight;
+    createCanvas(clientWidth, clientHeight);
     noCursor();//隐藏鼠标
     strokeCap(PROJECT); //设置线条类型为扩展性
     //加载颜色按钮

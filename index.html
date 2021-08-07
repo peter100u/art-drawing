@@ -3,17 +3,21 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
-    <title>p5.js example</title>
+    <meta name=viewport
+          content="width=device-width, initial-scale=1.0, minimum-scale=1.0 maximum-scale=1.0, user-scalable=no viewport-fit=cover">
+    <title>艺术画板</title>
     <style>
         body {
             padding: 0;
             margin: 0;
+            overflow-y: hidden;
         }
     </style>
     <script src="p5.js"></script>
-    <script src="p5.sound.js"></script>
     <script src="sketch.js"></script>
+<!--    <script src="/__/firebase/8.9.0/firebase-app.js"></script>-->
+<!--    <script src="/__/firebase/8.9.0/firebase-analytics.js"></script>-->
+<!--    <script src="/__/firebase/init.js"></script>-->
 </head>
 
 <body>
@@ -22,23 +26,11 @@
 </body>
 
 <script>
-    document.documentElement.addEventListener('touchstart', function (event) {
-        if (event.touches.length > 1) {
-            event.preventDefault();
-        }
-    }, false);
-
-    let lastTouchEnd = 0;
-    document.documentElement.addEventListener('touchend', function (event) {
-        const now = Date.now();
-        if (now - lastTouchEnd <= 300) {
-            event.preventDefault();
-        }
-        lastTouchEnd = now;
-    }, false);
-
+    document.body.addEventListener('touchmove', function (e) {
+        if (e._isScroller) return;
+        e.preventDefault();
+    }, {
+        passive: false
+    });
 </script>
-<script src="/__/firebase/8.8.1/firebase-app.js"></script>
-<script src="/__/firebase/8.8.1/firebase-analytics.js"></script>
-<script src="/__/firebase/init.js"></script>
 </html>
